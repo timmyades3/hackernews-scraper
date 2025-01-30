@@ -118,6 +118,7 @@ celerybeat.pid
 # Ignore Celery Beat schedule file
 celerybeat-schedule
 celerybeat-schedule.db
+celerybeat-schedule.bak
 celerybeat-schedule.dat
 celerybeat-schedule.dir
 

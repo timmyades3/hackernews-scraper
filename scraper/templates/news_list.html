@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest News</title>
+
+    <!-- Load static tag -->
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'news_list.css' %}" />
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Top Section: Swagger API Link (Left) and Title (Centered) -->
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="text-center flex-grow-1 mb-0">Latest News</h1>
+            <a href="{% url 'schema-swagger-ui' %}" class="btn btn-info">API Docs</a>
+        </div>
+
+        <hr class="mb-4">
+
+        <!-- Search and Filter Form -->
+        <form method="GET" class="row g-3 mb-4">
+            <div class="col-md-6">
+                <input type="text" name="search" class="form-control" placeholder="Search news..." value="{{ request.GET.search }}">
+            </div>
+            <div class="col-md-3">
+                <select name="type" class="form-select">
+                    <option value="">All Types</option>
+                    <option value="story" {% if request.GET.type == 'story' %}selected{% endif %}>Story</option>
+                    <option value="job" {% if request.GET.type == 'job' %}selected{% endif %}>Job</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </form>
+
+        <!-- News List -->
+        <div class="list-group">
+            {% for news in news_items %}
+                <div class="list-group-item">
+                    <h3><a href="{% url 'item_detail' news.pk %}">{{ news.title }}</a></h3>
+                    <p>{{ news.text|truncatewords:30 }}</p>
+                    <p><strong>Author:</strong> {{ news.author }}</p>
+                    <p><strong>Score:</strong> {{ news.score }} | <strong>Comments:</strong> {{ news.descendants }}</p>
+                </div>
+            {% empty %}
+                <p class="text-center">No news items found.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if news_items.has_other_pages %}
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if news_items.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?search={{ search_query }}&type={{ type_query }}&page=1">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?search={{ search_query }}&type={{ type_query }}&page={{ news_items.previous_page_number }}">Previous</a>
+                    </li>
+                {% endif %}
+        
+                <li class="page-item disabled">
+                    <span class="page-link">Page {{ news_items.number }} of {{ news_items.paginator.num_pages }}</span>
+                </li>
+        
+                {% if news_items.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?search={{ search_query }}&type={{ type_query }}&page={{ news_items.next_page_number }}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?search={{ search_query }}&type={{ type_query }}&page={{ news_items.paginator.num_pages }}">Last</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -34,7 +34,7 @@ pip install virtualenv
 ### Clone the Repository
 ```bash
 git clone https://github.com/timmyades3/hackernews-scraper.git
-cd hackernews-scraper/scraper
+cd hackernews-scraper
 ```
 
 ### Create and Activate Virtual Environment

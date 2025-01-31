@@ -99,7 +99,7 @@ class CommentListAPIView(generics.ListAPIView):
 class CommentDetailView(generics.RetrieveAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    lookup_field = "comment_id"  # Ensure we query by comment_id instead of pk
+    lookup_field = "comment_id"  
 
     @swagger_auto_schema(tags=['Comments'])
     def get(self, request, *args, **kwargs):

@@ -34,7 +34,7 @@ class NewsItemSerializer(serializers.ModelSerializer):
         """
         validated_data['is_posted'] = True
         validated_data['date_created'] = timezone.now()
-        validated_data['score'] = random.randint(1, 100)  # Assign a random score
+        validated_data['score'] = random.randint(1, 100)  
         return super().create(validated_data)
 
 class NewsListSerializer(serializers.ModelSerializer):

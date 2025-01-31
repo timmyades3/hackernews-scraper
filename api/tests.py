@@ -76,7 +76,7 @@ class CommentAPITestCase(TestCase):
         )
         self.comment = Comment.objects.create(
             comment_id=101,
-            parent=self.news_item.item_id,  # Assuming parent links to the item's item_id
+            parent=self.news_item.item_id,  
             text="This is a test comment.",
             date_posted=now(),
             type="comment",

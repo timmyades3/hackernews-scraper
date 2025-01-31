@@ -114,7 +114,7 @@ python manage.py test <folder_name>
 ## API Endpoints
 Detailed API documentation is available at the `/api/docs/` route.
 
-Live API URL: [https://hackernews-scraper.herokuapp.com/api/news/](https://hackernews-scraper.onrender.com/swagger/)
+Live API URL: [hackernews-scraper](https://hackernews-scraper.onrender.com/swagger/)
 
 ## License
 This project is licensed under the MIT License.

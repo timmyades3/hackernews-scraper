@@ -10,7 +10,7 @@ This repository contains a Python application designed to scrape the latest tech
 - **API Access:** Offers API endpoints to post, delete, and update news articles, facilitating easy integration with front-end frameworks.
 
 ## Live Demo
-A live version of the application is available at: [HackerNews Scraper](https://hackernews-scraper.herokuapp.com/)
+A live version of the application is available at: [HackerNews Scraper](https://hackernews-scraper.onrender.com/)
 
 ## Technology Stack
 - **Backend Framework:** Django
@@ -81,7 +81,12 @@ redis-server
 
 ### Start Celery Worker
 ```bash
-celery -A hackernews worker -B -l INFO
+celery -A core worker --loglevel=info
+```
+
+### Start Celery beat
+```bash
+celery -A core beat --loglevel=info 
 ```
 
 ### Run the Application
@@ -109,7 +114,7 @@ python manage.py test <folder_name>
 ## API Endpoints
 Detailed API documentation is available at the `/api/docs/` route.
 
-Live API URL: [https://hackernews-scraper.herokuapp.com/api/news/](https://hackernews-scraper.herokuapp.com/api/news/)
+Live API URL: [https://hackernews-scraper.herokuapp.com/api/news/](https://hackernews-scraper.onrender.com/swagger/)
 
 ## License
 This project is licensed under the MIT License.

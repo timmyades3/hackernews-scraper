@@ -81,7 +81,7 @@ redis-server
 
 ### Start Celery Worker
 ```bash
-celery -A core worker --loglevel=info
+celery -A core worker --pool=solo --loglevel=info
 ```
 
 ### Start Celery beat

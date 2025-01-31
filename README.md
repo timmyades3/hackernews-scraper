@@ -6,7 +6,7 @@ This repository contains a Python application designed to scrape the latest tech
 - **Periodic Scraping:** Automatically scrapes Hacker News at regular intervals (default: every 5 minutes) to keep the data up-to-date.
 - **Search Functionality:** Allows users to search for specific news articles or topics.
 - **Pagination:** Enables convenient navigation through lists of news items.
-- **Filtering:** Provides options to filter news based on categories or tags.
+- **Filtering:** Provides options to filter news based on news type.
 - **API Access:** Offers API endpoints to post, delete, and update news articles, facilitating easy integration with front-end frameworks.
 
 ## Live Demo
